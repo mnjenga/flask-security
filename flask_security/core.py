@@ -69,7 +69,7 @@ _default_config = {
     'POST_LOGOUT_VIEW': '/',
     'CONFIRM_ERROR_VIEW': None,
     'POST_REGISTER_VIEW': None,
-    'POST_CONFIRM_VIEW': None,
+    'POST_CONFIRM_VIEW': '/',
     'POST_RESET_VIEW': None,
     'POST_CHANGE_VIEW': None,
     'UNAUTHORIZED_VIEW': lambda: None,
