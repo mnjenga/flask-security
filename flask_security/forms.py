@@ -132,6 +132,8 @@ class PasswordConfirmFormMixin():
 
 
 class NextFormMixin():
+    class Meta:
+        csrf = False  # Enable CSRF
     next = HiddenField()
 
     def validate_next(self, field):
