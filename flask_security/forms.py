@@ -274,7 +274,7 @@ class ApiLoginForm(APIForm, NextFormMixin):
     submit = SubmitField(get_form_field_label('login'))
 
     def __init__(self, *args, **kwargs):
-        super(LoginForm, self).__init__(*args, **kwargs)
+        super(ApiLoginForm, self).__init__(*args, **kwargs)
         if not self.next.data:
             self.next.data = request.args.get('next', '')
         self.remember.default = config_value('DEFAULT_REMEMBER_ME')
