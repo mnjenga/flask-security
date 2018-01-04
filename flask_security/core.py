@@ -60,6 +60,7 @@ _default_config = {
         'plaintext',
     },
     'LOGIN_URL': '/account/login',
+    'LOGIN_TOKEN_URL': '/api/login',
     'LOGOUT_URL': '/account/logout',
     'REGISTER_URL': '/account/register',
     'RESET_URL': '/account/reset',
