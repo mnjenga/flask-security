@@ -68,7 +68,7 @@ def _ctx(endpoint):
 def login():
     """View function for login view"""
 
-    form_class = _security.api_login_form
+    form_class = _security.login_form
 
     if request.is_json:
         form = form_class(MultiDict(request.get_json()))
