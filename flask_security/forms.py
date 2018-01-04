@@ -88,6 +88,8 @@ def valid_user_email(form, field):
 
 
 class Form(BaseForm):
+    class Meta:
+        csrf = False  # Enable CSRF
     def __init__(self, *args, **kwargs):
         if current_app.testing:
             self.TIME_LIMIT = None
@@ -132,8 +134,6 @@ class PasswordConfirmFormMixin():
 
 
 class NextFormMixin():
-    class Meta:
-        csrf = False  # Enable CSRF
     next = HiddenField()
 
     def validate_next(self, field):
