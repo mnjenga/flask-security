@@ -64,6 +64,7 @@ def _ctx(endpoint):
 
 
 @anonymous_user_required
+def login_token():
     """View function for login view"""
 
     form_class = _security.login_form
@@ -96,8 +97,7 @@ def logout():
     return redirect(get_post_logout_redirect())
 
 @anonymous_user_required
-@csrf.exempt
-def login_token():
+def login():
     """View function for login view"""
 
     form_class = _security.login_form
