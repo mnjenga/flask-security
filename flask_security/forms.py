@@ -212,7 +212,7 @@ class PasswordlessLoginForm(Form, UserEmailFormMixin):
         return True
 
 
-class LoginFormForm(Form, NextFormMixin):
+class LoginForm(Form, NextFormMixin):
     """The default login form"""
 
     email = StringField(get_form_field_label('email'),
