@@ -88,12 +88,19 @@ def valid_user_email(form, field):
 
 
 class Form(BaseForm):
+    def __init__(self, *args, **kwargs):
+        if current_app.testing:
+            self.TIME_LIMIT = None
+        super(Form, self).__init__(*args, **kwargs)
+        
+class APIForm(BaseForm):
     class Meta:
         csrf = False  # Enable CSRF
     def __init__(self, *args, **kwargs):
         if current_app.testing:
             self.TIME_LIMIT = None
         super(Form, self).__init__(*args, **kwargs)
+
 
 
 class EmailFormMixin():
@@ -205,7 +212,7 @@ class PasswordlessLoginForm(Form, UserEmailFormMixin):
         return True
 
 
-class LoginForm(Form, NextFormMixin):
+class LoginForm(APIForm, NextFormMixin):
     """The default login form"""
 
     email = StringField(get_form_field_label('email'),
