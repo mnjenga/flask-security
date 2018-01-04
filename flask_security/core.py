@@ -60,7 +60,7 @@ _default_config = {
         'plaintext',
     },
     'LOGIN_URL': '/account/login',
-    'LOGIN_TOKEN_URL': '/api/login',
+    'API_LOGIN_URL': '/api/login',
     'LOGOUT_URL': '/account/logout',
     'REGISTER_URL': '/account/register',
     'RESET_URL': '/account/reset',
@@ -218,6 +218,7 @@ _default_messages = {
 
 _default_forms = {
     'login_form': LoginForm,
+    'login_form': ApiLoginForm,
     'confirm_register_form': ConfirmRegisterForm,
     'register_form': RegisterForm,
     'forgot_password_form': ForgotPasswordForm,
