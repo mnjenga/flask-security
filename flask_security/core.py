@@ -444,6 +444,9 @@ class _SecurityState(object):
 
     def login_context_processor(self, fn):
         self._add_ctx_processor('login', fn)
+        
+    def api_login_context_processor(self, fn):
+        self._add_ctx_processor('api_login', fn)
 
     def register_context_processor(self, fn):
         self._add_ctx_processor('register', fn)
