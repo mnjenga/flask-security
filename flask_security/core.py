@@ -218,7 +218,7 @@ _default_messages = {
 
 _default_forms = {
     'login_form': LoginForm,
-    'login_form': ApiLoginForm,
+    'api_login_form': ApiLoginForm,
     'confirm_register_form': ConfirmRegisterForm,
     'register_form': RegisterForm,
     'forgot_password_form': ForgotPasswordForm,
