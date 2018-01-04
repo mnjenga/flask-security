@@ -64,7 +64,6 @@ def _ctx(endpoint):
 
 
 @anonymous_user_required
-def login():
     """View function for login view"""
 
     form_class = _security.login_form
@@ -74,12 +73,11 @@ def login():
     else:
         form = form_class(request.form)
 
-    if form.validate_on_submit():
-        login_user(form.user, remember=form.remember.data)
-        after_this_request(_commit)
+    login_user(form.user, remember=form.remember.data)
+    after_this_request(_commit)
 
-        if not request.is_json:
-            return redirect(get_post_login_redirect(form.next.data))
+    if not request.is_json:
+        return redirect(get_post_login_redirect(form.next.data))
 
     if request.is_json:
         return _render_json(form, include_auth_token=True)
