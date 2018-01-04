@@ -97,7 +97,7 @@ def login():
     if request.is_json:
         form = form_class(MultiDict(request.get_json()))
     else:
-        form = form_class(request.form, csrf_enabled=False)
+        form = form_class(request.form)
 
     if form.validate_on_submit():
         login_user(form.user, remember=form.remember.data)
