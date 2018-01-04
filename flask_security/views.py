@@ -97,6 +97,40 @@ def logout():
 
     return redirect(get_post_logout_redirect())
 
+@anonymous_user_required
+@csrf.exempt
+def login_token():
+    """View function for login view"""
+
+    form_class = _security.login_form
+
+    if request.is_json:
+        form = form_class(MultiDict(request.get_json()))
+    else:
+        form = form_class(request.form)
+
+    if form.validate_on_submit():
+        login_user(form.user, remember=form.remember.data)
+        after_this_request(_commit)
+
+        if not request.is_json:
+            return redirect(get_post_login_redirect(form.next.data))
+
+    if request.is_json:
+        return _render_json(form, include_auth_token=True)
+
+    return _security.render_template(config_value('LOGIN_USER_TEMPLATE'),
+                                     login_user_form=form,
+                                     **_ctx('login'))
+
+
+def logout():
+    """View function which handles a logout request."""
+
+    if current_user.is_authenticated:
+        logout_user()
+
+    return redirect(get_post_logout_redirect())
 
 @anonymous_user_required
 def register():
