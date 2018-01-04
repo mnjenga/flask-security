@@ -370,6 +370,10 @@ def create_blueprint(state, import_name):
                    template_folder='templates')
 
     bp.route(state.logout_url, endpoint='logout')(logout)
+    
+    bp.route(state.api_login_url, 
+             methods=['GET', 'POST'],
+             endpoint='api_login')(api_login)
 
     if state.passwordless:
         bp.route(state.login_url,
