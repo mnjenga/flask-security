@@ -287,7 +287,7 @@ class ApiLoginForm(APIForm, NextFormMixin):
             self.password.description = html
 
     def validate(self):
-        if not super(LoginForm, self).validate():
+        if not super(ApiLoginForm, self).validate():
             return False
 
         self.user = _datastore.get_user(self.email.data)
