@@ -63,22 +63,24 @@ def _ctx(endpoint):
     return _security._run_ctx_processor(endpoint)
 
 
-@anonymous_user_required
-def login_token():
-    """View function for login_token view"""
 
-    form_class = _security.login_form
+@anonymous_user_required
+def login():
+    """View function for login view"""
+
+    form_class = _security.api_login_form
 
     if request.is_json:
         form = form_class(MultiDict(request.get_json()))
     else:
         form = form_class(request.form)
 
-    login_user(form.user, remember=form.remember.data)
-    after_this_request(_commit)
+    if form.validate_on_submit():
+        login_user(form.user, remember=form.remember.data)
+        after_this_request(_commit)
 
-    if not request.is_json:
-        return redirect(get_post_login_redirect(form.next.data))
+        if not request.is_json:
+            return redirect(get_post_login_redirect(form.next.data))
 
     if request.is_json:
         return _render_json(form, include_auth_token=True)
@@ -88,11 +90,12 @@ def login_token():
                                      **_ctx('login'))
 
 
+
 @anonymous_user_required
-def login():
+def api_login():
     """View function for login view"""
 
-    form_class = _security.login_form
+    form_class = _security.api_login_form
 
     if request.is_json:
         form = form_class(MultiDict(request.get_json()))
