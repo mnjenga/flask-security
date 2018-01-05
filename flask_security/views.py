@@ -103,13 +103,12 @@ def api_login():
             login_user(form.user, remember=form.remember.data)
             after_this_request(_commit)
     else:
-        do_flash(*get_message('INVALID_LOGIN_ATTEMPT'))
-    
+        return jsonify(*get_message('INVALID_LOGIN_ATTEMPT'))   
 
     if request.is_json:
         return _render_json(form, include_auth_token=True)
-
-    do_flash(*get_message('INVALID_LOGIN_ATTEMPT'))
+    
+    return jsonify(*get_message('INVALID_LOGIN_ATTEMPT'))
 
 
 def logout():
