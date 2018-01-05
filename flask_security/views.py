@@ -109,7 +109,8 @@ def api_login():
     if request.is_json:
         return _render_json(form, include_auth_token=True)
 
-    return jsonify('Sorry it appears you followed the wrong link')
+    do_flash(*get_message('INVALID_LOGIN_ATTEMPT'))
+
 
 def logout():
     """View function which handles a logout request."""
