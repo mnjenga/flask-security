@@ -182,6 +182,8 @@ _default_messages = {
         _('Instructions to login have been sent to %(email)s.'), 'success'),
     'INVALID_LOGIN_TOKEN': (
         _('Invalid login token.'), 'error'),
+    'INVALID_LOGIN_ATTEMPT': (
+        _('Invalid login attempt.'), 'error'),
     'DISABLED_ACCOUNT': (
         _('Account is disabled.'), 'error'),
     'EMAIL_NOT_PROVIDED': (
