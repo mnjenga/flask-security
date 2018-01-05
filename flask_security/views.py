@@ -100,14 +100,10 @@ def api_login():
     if request.is_json:
         form = form_class(MultiDict(request.get_json()))
     else:
-        form = form_class(request.form)
-
+        do_flash(*get_message('INVALID_LOGIN_ATTEMPT'))
     if form.validate_on_submit():
         login_user(form.user, remember=form.remember.data)
         after_this_request(_commit)
-
-        if not request.is_json:
-            return redirect(get_post_login_redirect(form.next.data))
 
     if request.is_json:
         return _render_json(form, include_auth_token=True)
