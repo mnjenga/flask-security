@@ -20,6 +20,8 @@ Flask-Security
 
 It quickly adds security features to your Flask application.
 
+This Branch adds an API login view (/api/login) that is CSRF exempt and only accepts json posts (GET disabled and does not process form POSTS)
+
 Resources
 ---------
 
