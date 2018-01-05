@@ -108,9 +108,7 @@ def api_login():
     if request.is_json:
         return _render_json(form, include_auth_token=True)
 
-    return _security.render_template(config_value('LOGIN_USER_TEMPLATE'),
-                                     login_user_form=form,
-                                     **_ctx('login'))
+    return jsonify('Sorry it appears you followed the wrong link')
 
 
 def logout():
