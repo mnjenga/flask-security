@@ -99,17 +99,17 @@ def api_login():
 
     if request.is_json:
         form = form_class(MultiDict(request.get_json()))
+        if form.validate_on_submit():
+            login_user(form.user, remember=form.remember.data)
+            after_this_request(_commit)
     else:
         do_flash(*get_message('INVALID_LOGIN_ATTEMPT'))
-    if form.validate_on_submit():
-        login_user(form.user, remember=form.remember.data)
-        after_this_request(_commit)
+    
 
     if request.is_json:
         return _render_json(form, include_auth_token=True)
 
     return jsonify('Sorry it appears you followed the wrong link')
-
 
 def logout():
     """View function which handles a logout request."""
