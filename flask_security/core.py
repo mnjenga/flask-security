@@ -183,7 +183,7 @@ _default_messages = {
     'INVALID_LOGIN_TOKEN': (
         _('Invalid login token.'), 'error'),
     'INVALID_LOGIN_ATTEMPT': (
-        _('Invalid login attempt.'), 'error'),
+        _('Invalid request.'), 'error'),
     'DISABLED_ACCOUNT': (
         _('Account is disabled.'), 'error'),
     'EMAIL_NOT_PROVIDED': (
