@@ -42,3 +42,22 @@ def register_user(**kwargs):
 
     return user
 
+def register_api_user(**kwargs):
+    confirmation_link, token = None, None
+    kwargs['password'] = hash_password(kwargs['password'])
+    user = _datastore.create_user(**kwargs)
+    _datastore.commit()
+
+    if _security.confirmable:
+        confirmation_link, token = generate_confirmation_link(user)
+
+    user_registered.send(app._get_current_object(),
+                         user=user, confirm_token=token)
+
+    if config_value('SEND_REGISTER_EMAIL'):
+        _security.send_mail(config_value('EMAIL_SUBJECT_REGISTER'), user.email,
+                            'welcome', user=user,
+                            confirmation_link=confirmation_link)
+
+    return user.email
+
