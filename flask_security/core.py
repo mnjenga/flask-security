@@ -12,8 +12,8 @@
 """
 
 from datetime import datetime
+import os
 
-import pkg_resources
 from flask import current_app, render_template
 from flask_babelex import Domain
 from flask_login import UserMixin as BaseUserMixin
@@ -314,8 +314,9 @@ def _get_pwd_context(app):
 
 
 def _get_i18n_domain(app):
+    translations_path = os.path.join(os.path.dirname(__file__), 'translations')
     return Domain(
-        pkg_resources.resource_filename('flask_security', 'translations'),
+        translations_path,
         domain=cv('I18N_DOMAIN', app=app)
     )
 
